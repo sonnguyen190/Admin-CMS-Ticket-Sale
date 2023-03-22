@@ -1,0 +1,58 @@
+.Logo_InSight{
+    background-image: url("../../images/insightLogo.png");
+    height: 58px;
+    width: 133px;
+    background-size: 100% 100%;
+    margin: 15px 25px;
+}
+.browserRoutter{
+    display: grid;
+    grid-template-columns: 352px 80%;
+}
+.all_menu{
+    background-color: #f0efef;
+    height: 100%;
+    width: 100%;
+}
+.list_menu {
+   margin: 0px;
+   padding: 0px;
+}
+.list_menu ul li{
+    list-style-type: none;
+    text-decoration: none;
+    padding: 10px 10px;
+    min-width: 252px;
+    border-radius: 5px;
+    width: 100%;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 26px;
+    height: 36px;
+    display: flex;
+}
+.unActive_list_menu{
+    color: #1E0D03;
+}
+.active_list_menu{
+   background-color:#FFB800 ;
+   color: #FFFFFF;
+   font-weight: 700;
+}
+.list_menu ul li span{
+  opacity: 0.7;
+}
+.list_menu ul {
+    list-style-type: none;
+    text-decoration: none;
+    margin: 50px 50px 30px 30px ;
+    padding: 0px;
+}
+.linkDecoration_Menu{
+    text-decoration: none;
+    height: 56px;
+}
+.icon_menu_list{
+    margin: 0px 10px; 
+}
