@@ -3,4 +3,18 @@ body{
     padding: 0px;
     height: 100%;
     width: 100%;
+    font-family: 'Montserrat'
+}
+.right_content{
+    margin: 0px;
+    padding: 0px;
+}
+.home_page{
+    padding: 20px 20px;
+    width: 100%;
+    margin: 0px;
+}
+.browserRoutter{
+    margin: 0px;
+    padding: 0px;
 }

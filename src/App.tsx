@@ -4,19 +4,25 @@ import "./App.css";
 import { Menu } from "./Components/Menu/Menu";
 import Home from "./Pages/Home/Home";
 import Ticketmanagement from "./Pages/Ticketmanagement/Ticketmanagement";
+import Header from "./Widgets/Headers/Header";
 
 function App() {
   return (
     <BrowserRouter>
       <div className="browserRoutter">
         <Menu />
-        <Routes>
-          <Route path="/" element={<Home />}></Route>
-          <Route
-            path="/ticketmanagement"
-            element={<Ticketmanagement />}
-          ></Route>
-        </Routes>
+        <div className="right_content">
+          <Header />
+          <div className="home_page">
+            <Routes>
+              <Route path="/" element={<Home />}></Route>
+              <Route
+                path="/ticketmanagement"
+                element={<Ticketmanagement />}
+              ></Route>
+            </Routes>
+          </div>
+        </div>
       </div>
     </BrowserRouter>
   );

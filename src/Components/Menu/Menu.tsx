@@ -23,7 +23,7 @@ export const Menu = () => {
           >
             <li
               className={
-                isActive == "home" ? "active_list_menu" : "unActive_list_menu"
+                isActive === "home" ? "active_list_menu" : "unActive_list_menu"
               }
             >
               <span className="icon_menu_list">
@@ -40,7 +40,7 @@ export const Menu = () => {
           >
             <li
               className={
-                isActive == "ticketmanagement"
+                isActive === "ticketmanagement"
                   ? "active_list_menu"
                   : "unActive_list_menu"
               }
@@ -59,7 +59,7 @@ export const Menu = () => {
           >
             <li
               className={
-                isActive == "ticketchange"
+                isActive === "ticketchange"
                   ? "active_list_menu"
                   : "unActive_list_menu"
               }
@@ -78,7 +78,9 @@ export const Menu = () => {
           >
             <li
               className={
-                isActive == "option" ? "active_list_menu" : "unActive_list_menu"
+                isActive === "option"
+                  ? "active_list_menu"
+                  : "unActive_list_menu"
               }
             >
               <span className="icon_menu_list">
