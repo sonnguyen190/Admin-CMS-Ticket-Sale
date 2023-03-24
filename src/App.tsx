@@ -6,7 +6,7 @@ import Home from "./Pages/Home/Home";
 import Ticketmanagement from "./Pages/Ticketmanagement/Ticketmanagement";
 import Header from "./Widgets/Headers/Header";
 
-function App() {
+const App: React.FC = () => {
   return (
     <BrowserRouter>
       <div className="browserRoutter">
@@ -26,6 +26,6 @@ function App() {
       </div>
     </BrowserRouter>
   );
-}
+};
 
 export default App;

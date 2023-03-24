@@ -5,7 +5,7 @@ import ReceiptIcon from "@mui/icons-material/Receipt";
 import ConfirmationNumberIcon from "@mui/icons-material/ConfirmationNumber";
 import SettingsIcon from "@mui/icons-material/Settings";
 import "./Menu.css";
-export const Menu = () => {
+export const Menu: React.FC = () => {
   const [isActive, setIsActive] = useState("home");
 
   const handleChangeActive = (props: string) => {

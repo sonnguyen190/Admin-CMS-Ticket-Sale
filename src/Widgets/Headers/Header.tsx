@@ -7,7 +7,7 @@ import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 const logo = require("../../images/avatar.jpg");
 
-const Header = () => {
+const Header: React.FC = () => {
   return (
     <div className="Header">
       <div className="search_bar">

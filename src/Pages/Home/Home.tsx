@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Home.css";
+import { Doughnut } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -9,6 +10,7 @@ import {
   Title,
   Tooltip,
   Legend,
+  ArcElement,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 ChartJS.register(
@@ -16,15 +18,22 @@ ChartJS.register(
   LinearScale,
   PointElement,
   LineElement,
+  ArcElement,
   Title,
   Tooltip,
   Legend
 );
 
-const Home = () => {
+const Home: React.FC = () => {
   const [amount, setAmount] = useState<any>();
-
-  const options = {
+  const optionsDouhnut = {
+    plugins: {
+      legend: {
+        display: false,
+      },
+    },
+  };
+  const optionsLine = {
     responsive: true,
     plugins: {
       legend: {
@@ -56,7 +65,7 @@ const Home = () => {
     "CN",
   ];
 
-  const data = {
+  const dataLine = {
     labels,
     datasets: [
       {
@@ -70,6 +79,18 @@ const Home = () => {
       },
     ],
   };
+
+  const dataDouhnut = {
+    labels: ["Red", "Blue"],
+    datasets: [
+      {
+        label: "Vé",
+        data: [12, 19],
+        backgroundColor: ["#4F75FF", "#FF8A48"],
+      },
+    ],
+  };
+
   useEffect(() => {
     handleSum(datas);
   });
@@ -89,9 +110,47 @@ const Home = () => {
       <div className="thongke">Thống Kê</div>
       <div className="chart_home">
         <div className="doanhthu">Doanh Thu</div>
-        <Line className="Chart_home_line" options={options} data={data} />
+        <Line
+          className="Chart_home_line"
+          options={optionsLine}
+          data={dataLine}
+        />
         <div className="amount">Tổng doanh thu theo tuần </div>
         <div className="amount_number">{amount}</div>
+      </div>
+      <div className="All_Douhnut">
+        <div className="Douhnut_Family_Event">
+          <div>
+            <div className="name_Douhnut">Gói gia đình</div>
+            <div>
+              <Doughnut
+                className="Douhnut"
+                options={optionsDouhnut}
+                data={dataDouhnut}
+              />
+            </div>
+          </div>
+          <div>
+            <div className="name_Douhnut">Gói sự kiện</div>
+            <div>
+              <Doughnut
+                className="Douhnut"
+                options={optionsDouhnut}
+                data={dataDouhnut}
+              />
+            </div>
+          </div>
+          <div className="deription_douhnut">
+            <div>
+              <div className="color_deription1"></div>
+              <span>Vé đã sử dụng</span>
+            </div>
+            <div>
+              <div className="color_deription2"></div>
+              <span>Vé chưa sử dụng</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

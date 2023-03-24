@@ -1,6 +1,6 @@
 import React from "react";
 
-const Ticketmanagement = () => {
+const Ticketmanagement: React.FC = () => {
   return <div>Ticketmanagement</div>;
 };
 
