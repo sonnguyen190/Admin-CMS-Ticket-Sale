@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
-import { Menu } from "./Components/Menu/Menu";
+import { Menu } from "./Components/Navbar/Navbar";
 import Home from "./Pages/Home/Home";
 import Ticketmanagement from "./Pages/Ticketmanagement/Ticketmanagement";
 import Header from "./Widgets/Headers/Header";
@@ -13,7 +13,7 @@ const App: React.FC = () => {
         <Menu />
         <div className="right_content">
           <Header />
-          <div className="home_page">
+          <div className="home_page wide">
             <Routes>
               <Route path="/" element={<Home />}></Route>
               <Route

@@ -10,9 +10,13 @@ body{
     padding: 0px;
 }
 .home_page{
-    padding: 20px 20px;
     width: 100%;
-    margin: 0px;
+    display: block;
+    padding: 0px;
+}
+.wide{
+    max-width: 1440px;
+    margin: 0 auto;
 }
 .browserRoutter{
     margin: 0px;

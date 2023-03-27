@@ -23,7 +23,6 @@ ChartJS.register(
   Tooltip,
   Legend
 );
-
 const Home: React.FC = () => {
   const [amount, setAmount] = useState<any>();
   const optionsDouhnut = {

@@ -1,0 +1,22 @@
+.search_bar_Ticketmanagement{
+    position: relative;
+    max-width: 400px;
+    height: 39px;
+    border-radius: 5px;
+    background-color: #e0dede;
+    margin: 20px 0px;
+}
+.input_search_Ticketmanagement{
+    padding-top: 5px;
+    min-width:350px;
+    
+    padding-left: 15px;
+}
+.danhsachve{
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 54px;
+    color: #1E0D03;
+    margin: 20px 0px;
+}

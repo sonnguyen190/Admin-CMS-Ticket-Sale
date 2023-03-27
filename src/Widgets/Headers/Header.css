@@ -8,10 +8,10 @@
 }
 .search_bar{
     position: relative;
-    width: 437px;
+    max-width: 437px;
     height: 39px;
-    border-radius: 10px;
-    background-color: #d6d4d4;
+    border-radius: 5px;
+    background-color: #e0dede;
     min-width:237px;
 }
 .input_search{
@@ -22,7 +22,10 @@
 
 .icon_search{
     position: relative;
-    left: 0px;
+    height: 38px;
+    width: 38px;
+    padding: 0px;
+    margin: 0px;
 }
 .header_right{
     position: relative;
