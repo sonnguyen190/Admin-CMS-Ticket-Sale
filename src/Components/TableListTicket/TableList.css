@@ -1,0 +1,48 @@
+.statusChuadung{
+    border: solid #03AC00 1px;
+    color: #03AC00;
+    width: 146px;
+    border-radius: 4px;
+    padding: 5px 5px;
+    text-align: center;
+    background-color: #DEF7E0;
+    font-style: normal;
+    font-weight: 700;
+    align-items: center;
+    font-size: 14px;
+    justify-content: center;
+    flex-direction: row;
+    line-height: 15px;
+}
+.statusDadung{
+    border: solid #919DBA 1px;
+    color: #919DBA;
+    width: 127px;
+    background-color: #EAF1F8;
+    border-radius: 4px;
+    padding: 5px 5px;
+    text-align: center;
+    font-style: normal;
+    font-weight: 700;
+    align-items: center;
+    font-size: 14px;
+    justify-content: center;
+    flex-direction: row;
+    line-height: 15px;
+}
+.statusHethan{
+    border: solid #FD5959 1px;
+    color: #FD5959;
+    background-color: #F8EBE8;
+    width: 105px;
+    border-radius: 4px;
+    padding: 5px 5px;
+    text-align: center;
+    font-style: normal;
+    font-weight: 700;
+    align-items: center;
+    font-size: 14px;
+    justify-content: center;
+    flex-direction: row;
+    line-height: 15px;
+}

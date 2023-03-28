@@ -54,7 +54,7 @@ export const Menu: React.FC = () => {
 
           <Link
             className="linkDecoration_Menu"
-            to={`/ticketchange`}
+            to={`/ticketcheck`}
             onClick={() => handleChangeActive("ticketchange")}
           >
             <li

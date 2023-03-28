@@ -12,7 +12,7 @@ const Header: React.FC = () => {
     <div className="Header">
       <div className="search_bar">
         <InputBase className="input_search" placeholder="Search" />
-        <IconButton type="button" sx={{ p: "10px" }} aria-label="search">
+        <IconButton type="button" sx={{ p: "5px" }} aria-label="search">
           <SearchIcon />
         </IconButton>
       </div>

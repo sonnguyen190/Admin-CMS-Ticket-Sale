@@ -20,3 +20,45 @@
     color: #1E0D03;
     margin: 20px 0px;
 }
+.SearchAndFilter{
+    display: grid;
+    grid-template-columns: 80% 20%;
+}
+.filterTicket{
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+.filterManage{
+    border: #FF993C solid 1px;
+    width: 50%;
+    box-sizing: border-box;
+    margin: 0px 5px;
+    padding: 10px 0px;
+    color:#FF993C;
+    font-weight:900;
+    align-items: center ;
+    text-align: center;
+    border-radius: 4px;
+}
+.iconFilter{
+    position: relative;
+    top: 6px;
+}
+.exportFile{
+    border: #FF993C solid 1px;
+    width: 50%;
+    box-sizing: border-box;
+    margin: 0px 5px;
+    padding: 13px 0px;
+    color:#FF993C;
+    font-weight:900;
+    align-items: center ;
+    text-align: center;
+    border-radius: 4px;
+}
+.TicketManage{
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+}

@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import { Menu } from "./Components/Navbar/Navbar";
+import CheckTicket from "./Pages/CheckTicket/CheckTicket";
 import Home from "./Pages/Home/Home";
 import Ticketmanagement from "./Pages/Ticketmanagement/Ticketmanagement";
 import Header from "./Widgets/Headers/Header";
@@ -20,6 +21,7 @@ const App: React.FC = () => {
                 path="/ticketmanagement"
                 element={<Ticketmanagement />}
               ></Route>
+              <Route path="/ticketcheck" element={<CheckTicket />}></Route>
             </Routes>
           </div>
         </div>
