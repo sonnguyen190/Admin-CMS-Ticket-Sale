@@ -50,3 +50,100 @@
     padding: 20px;
     margin-left: 15px;
 }
+.ul_li_filter{
+    position: relative;
+    display: inline;
+    margin-top: 20px;
+}
+.tinhtrangdoisoat{
+    display: inline-block;
+    margin-top: 25px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 26px;
+}
+.filtercheck{
+    display: grid;
+    grid-template-columns: 40% 60%;
+}
+.ul_li_filter ul {
+    padding: 0 15px;
+    align-items: center;
+ }
+.ul_li_filter ul li{
+    list-style-type: none;
+    align-items: center;
+    padding: 1px;
+ }
+.ul_li_filter ul li label{
+    padding: 0px 0px 0px 10px;
+    align-items: center;
+    
+ }
+ .ul_li_filter ul li input {
+    font-size: 40px;
+    align-items: center;
+    height: 20px;
+    width: 20px;
+    position: relative;
+    top: 5px;
+ }
+ .typeTicket{
+    display: grid;
+    grid-template-columns: 40% 60%;
+ }
+ .typeTicket_content{
+    padding: 0 15px;
+    align-items: center;
+ }
+ .typeTicket_name{
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+ }
+ .CheckDate_name{
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    margin-top: 10px;
+ }
+ .tungay{
+    display: grid;
+    grid-template-columns: 40% 60%;
+    margin-top: 20px;
+ }
+ .CheckDate_content{
+    padding: 0 15px;
+    align-items: center;
+    
+ }
+.DatePicker{
+    background: #E0E0E0;
+ }
+.AcceptFilter{
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 11px 24px;
+    gap: 10px;
+    margin-top: 10px;
+    
+ }
+.buttonFilerAccept{
+    border: solid 1px #FF993C;
+    background-color: white;
+    border-radius: 5px;
+    width: 160px;
+    height: 48px;
+    color: #FF993C;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 26px;
+ }
+.buttonFilerAccept:hover{
+    cursor: pointer;
+ }
