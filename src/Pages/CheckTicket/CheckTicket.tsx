@@ -11,7 +11,7 @@ import { TicketCheck } from "./interfaceCheck";
 import ListTableTicketCheck from "../../Components/ListTableTicketCheck";
 
 const CheckTicket: React.FC = () => {
-  const [date, setDate] = useState<any>();
+  const [date, setDate] = useState<string>();
   const dataTicketCheck: TicketCheck[] = [
     {
       code: 12983789182,
@@ -170,7 +170,10 @@ const CheckTicket: React.FC = () => {
           <div className="CheckDate_name">Từ ngày</div>
           <div className="CheckDate_content">
             <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <DatePicker value={dayjs(date)} readOnly className="DatePicker" />
+              <DatePicker
+                defaultValue={dayjs("11/11/2022")}
+                className="DatePicker"
+              />
             </LocalizationProvider>
           </div>
         </div>

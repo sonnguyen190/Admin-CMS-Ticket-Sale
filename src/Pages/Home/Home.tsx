@@ -25,33 +25,10 @@ ChartJS.register(
 );
 const Home: React.FC = () => {
   const [amount, setAmount] = useState<any>();
-  const optionsDouhnut = {
-    plugins: {
-      legend: {
-        display: false,
-      },
-    },
-  };
-  const optionsLine = {
-    responsive: true,
-    plugins: {
-      legend: {
-        display: false,
-      },
-    },
-    scales: {
-      x: {
-        ticks: {
-          font: {
-            size: 15,
-            weight: "bold",
-          },
-        },
-      },
-    },
-  };
+  const [datamax, setDataMax] = useState<number>();
+  const [datamin, setDataMin] = useState<number>();
   const datas: number[] = [
-    143000000, 170000000, 150000000, 230000000, 220000000, 200000000, 180000000,
+    243000000, 170000000, 180000000, 230000000, 220000000, 200000000, 180000000,
   ];
 
   const labels: string[] = [
@@ -63,6 +40,35 @@ const Home: React.FC = () => {
     "Thứ 7",
     "CN",
   ];
+  const optionsDouhnut = {
+    plugins: {
+      legend: {
+        display: false,
+      },
+    },
+  };
+
+  const optionsLine = {
+    responsive: true,
+    plugins: {
+      legend: {
+        display: false,
+      },
+    },
+    scales: {
+      x: {
+        grid: { display: true },
+        width: "1488px",
+      },
+      y: {
+        min: datamin,
+        max: datamax,
+        ticks: {
+          stepSize: 40000000,
+        },
+      },
+    },
+  };
 
   const dataLine = {
     labels,
@@ -92,6 +98,8 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     handleSum(datas);
+    setDataMax(Math.max(...datas));
+    setDataMin(Math.min(...datas));
   });
   const handleSum = (arr: number[]) => {
     let sum: any = 0;

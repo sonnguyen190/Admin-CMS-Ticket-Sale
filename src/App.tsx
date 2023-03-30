@@ -4,6 +4,7 @@ import "./App.css";
 import { Menu } from "./Components/Navbar/Navbar";
 import CheckTicket from "./Pages/CheckTicket/CheckTicket";
 import Home from "./Pages/Home/Home";
+import Option from "./Pages/Option/Option";
 import Ticketmanagement from "./Pages/Ticketmanagement/Ticketmanagement";
 import Header from "./Widgets/Headers/Header";
 
@@ -22,6 +23,7 @@ const App: React.FC = () => {
                 element={<Ticketmanagement />}
               ></Route>
               <Route path="/ticketcheck" element={<CheckTicket />}></Route>
+              <Route path="/option" element={<Option />}></Route>
             </Routes>
           </div>
         </div>
