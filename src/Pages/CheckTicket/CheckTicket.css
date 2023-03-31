@@ -119,7 +119,10 @@
     
  }
 .DatePicker{
-    background: #E0E0E0;
+    background: #f8f8f8;
+    border-radius: 8px;
+    border: #1E0D03 solid 1px;
+    height: 10px;
  }
 .AcceptFilter{
     text-align: center;

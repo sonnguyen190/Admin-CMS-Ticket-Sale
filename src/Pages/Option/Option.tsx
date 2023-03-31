@@ -6,11 +6,11 @@ import "./Option.css";
 import { DataTicketOption } from "./interfaceOption";
 import ListTableOption from "../../Components/ListTableOption";
 const Option: React.FC = () => {
-  const [dataOption, setDataOption] = useState<DataTicketOption[]>();
   const dataFake: DataTicketOption[] = [
     {
       code: "ALT14091",
       name: "Gói gia đình",
+      nameEvent: "Hội chợ",
       dateStart: "11/11/2022",
       hourStart: "08:00:00",
       dateEnd: "11/11/2023",
@@ -23,13 +23,14 @@ const Option: React.FC = () => {
     {
       code: "ALT14091",
       name: "Gói gia đình",
+      nameEvent: "Hội chợ",
       dateStart: "11/11/2022",
       hourStart: "08:00:00",
       dateEnd: "11/11/2023",
       hourEnd: "09:00:00",
       price: 20000,
-      priceCombo: null,
-      ticketCombo: null,
+      priceCombo: undefined,
+      ticketCombo: undefined,
       status: 0,
     },
   ];
