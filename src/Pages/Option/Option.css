@@ -258,3 +258,43 @@ input::-webkit-inner-spin-button {
     width: 118px;
     height: 40px;
 }
+.status_option{
+    margin-top: 15px;
+}
+.option_select_status{
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 2px;
+    gap: 10px;
+    border: 1px solid #A5A8B1;
+    border-radius: 8px;
+}
+.thongtinbb{
+    margin-top: 10px;
+}
+.button_option{
+    display: flex;
+    padding: 0px;
+    gap: 24px;
+    margin: 30px auto;
+    width: 344px;
+    height: 48px;
+}
+.button_option div{
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 11px 24px;
+    gap: 10px;
+    width: 160px;
+    height: 48px;
+    border: 1px solid #FF993C;
+    border-radius: 8px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 26px;
+    cursor: pointer;
+}
