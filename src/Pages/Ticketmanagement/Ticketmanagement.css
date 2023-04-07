@@ -62,3 +62,123 @@
     border-radius: 10px;
     padding: 20px;
 }
+.themeFilter{
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 1;
+    align-items: center;
+}
+.filter_management{
+    position: absolute;
+    width: 758px;
+    height: 528px;
+    background: #FFFFFF;
+    border-radius: 16px;
+    margin: 80px auto;
+    padding: 25px;
+    z-index: 1;
+    left: 35%;
+}
+.name_filter{
+    text-align: center;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 30px;
+}
+.dateStart_End{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    margin-top: 30px;
+}
+.date_manament{
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 26px;
+    color: #1E0D03;
+    opacity: 0.7;
+    margin-bottom: 10px;
+}
+.DatePickerManament{
+    background: #f8f8f8;
+    border-radius: 8px;
+    border: #1E0D03 solid 1px;
+    width: 203px;
+}
+.statusTicket{
+    margin-top: 20px;
+}
+.status_manament{
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 26px;
+    color: #1E0D03;
+}
+.statusRadio{
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    gap: 8px;
+    font-style: normal;
+    font-size: 20px;
+    margin-top: 10px;
+}
+.itemStatus{
+    text-align: center;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+   
+}
+.radio_manament{
+    margin: 0px 5px;
+    width: 20px;
+    height: 20px;
+    padding-top: 10px;
+    position: relative;
+    top: 2px;
+    right: 2px;
+}
+.Checkin_Manament{
+    margin-top: 20px;
+}
+.all_1_2{
+    display: grid;
+    grid-template-columns: 33.33% 33.33% 33.33%;
+}
+.all_1_2 div {
+   display: flex;
+   margin: 5px 0px;
+    align-items: center;
+}
+.all_1_2 div input{
+    width: 24px;
+    height: 24px;
+    margin-right: 5px;
+ }
+ .FilButton{
+    border: solid 1px #FF993C;
+    background-color: white;
+    border-radius: 5px;
+    width: 160px;
+    height: 48px;
+    color: #FF993C;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 26px;
+    cursor: pointer;
+ }
+ .Button_Filter{
+    align-items: center;
+    margin: 30px auto 0px;
+    text-align: center;
+ }
