@@ -86,6 +86,7 @@ const Option: React.FC = () => {
           <ListTableOption data={dataFake} />
         </table>
       </div>
+
       {open === true ? (
         <>
           <div className="popupEdit_over">

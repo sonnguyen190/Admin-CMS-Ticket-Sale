@@ -2,7 +2,10 @@ import React from "react";
 import DataList from "./DataList";
 import { ListData } from "./InterfaceData";
 import "./TableList.css";
-const TableListTicket: React.FC = () => {
+interface Props {
+  data: ListData[];
+}
+const TableListTicket: React.FC<Props> = ({ data }) => {
   const DataFake: ListData[] = [
     {
       code: "ALTFGHJU",
@@ -114,7 +117,7 @@ const TableListTicket: React.FC = () => {
           <th scope="col">Cổng check - in</th>
         </tr>
       </thead>
-      <DataList data={DataFake} />
+      <DataList data={data} />
     </table>
   );
 };
