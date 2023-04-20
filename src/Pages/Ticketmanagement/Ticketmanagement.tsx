@@ -2,34 +2,62 @@ import React, { useState, useEffect } from "react";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
-import { ref, child, get } from "firebase/database";
+import { addDoc, collection, getDocs, setDoc, doc } from "firebase/firestore";
 import "./Ticketmanagement.css";
 import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
 import TableListTicket from "../../Components/TableListTicket/TableListTicket";
 import FilterManament from "../../Components/FilterManament";
+import { useSelector, useDispatch } from "react-redux";
 import { database } from "../../firebase";
-import { ListData } from "../../Components/TableListTicket/InterfaceData";
+import { listTicketSelectors } from "../../Redux/selectors";
+import { FilterSlice } from "../../Components/FilterSlice";
+import dayjs, { Dayjs } from "dayjs";
+
 const Ticketmanagement: React.FC = () => {
   const [open, setOpen] = useState(false);
-  const [tickets, setTicket] = useState<any>();
+  const listData = useSelector(listTicketSelectors);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const dispatch = useDispatch();
+  const dbRef = collection(database, "ticket");
+
   const handleOpen = (a: boolean) => {
     setOpen(a);
   };
   useEffect(() => {
-    const dbRef = ref(database);
-    get(child(dbRef, `ticket`))
-      .then((snapshot) => {
-        if (snapshot.exists()) {
-          console.log(snapshot.val());
-          setTicket(snapshot.val());
-        } else {
-          console.log("No data available");
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    setIsLoading(true);
+    getData();
   }, []);
+
+  const getData = async () => {
+    const data = await getDocs(dbRef);
+    setIsLoading(false);
+
+    dispatch(
+      FilterSlice.actions.listFilter(
+        data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+      )
+    );
+  };
+
+  const handleadd = async () => {
+    await setDoc(doc(dbRef, `jashrjkahKS`), {
+      code: "ALT121312",
+      numberTicket: 123123123,
+      status: "chuasudung",
+      dateUse: new Dayjs(),
+      dateCreateTicket: new Dayjs(),
+      doorCheckin: 1,
+    });
+    // await addDoc(dbRef, {
+    //   code: "ALT121312",
+    //   numberTicket: 123123123,
+    //   status: "chuasudung",
+    //   dateUse: Dayjs,
+    //   dateCreateTicket: Dayjs,
+    //   doorCheckin: 1,
+    // });
+  };
 
   return (
     <div className="TicketManage">
@@ -61,11 +89,13 @@ const Ticketmanagement: React.FC = () => {
             <FilterAltOutlinedIcon className="iconFilter" />
             Lọc vé
           </div>
-          <div className="exportFile">Xuất file (.csv)</div>
+          <div onClick={handleadd} className="exportFile">
+            Xuất file (.csv)
+          </div>
         </div>
       </div>
       <div>
-        <TableListTicket data={tickets} />
+        <TableListTicket data={listData.listData} isLoading={isLoading} />
       </div>
     </div>
   );

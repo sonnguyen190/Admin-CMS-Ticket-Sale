@@ -1,29 +1,60 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ListData } from "./InterfaceData";
+
 interface Props {
   data: ListData[];
+  isLoading: boolean;
 }
 const DataList: React.FC<Props> = (props) => {
-  const { data } = props;
+  const { data, isLoading } = props;
+  const [dateUse, setDateUse] = useState();
+
+  useEffect(() => {});
+
   return (
     <tbody>
+      {isLoading === true ? (
+        <div className="loading_manament">
+          <div>Loading...</div>
+        </div>
+      ) : (
+        <></>
+      )}
       {data ? (
         data.map((data, key) => (
           <tr key={key}>
             <td>{key + 1}</td>
             <td>{data.code}</td>
-            <td>{data.numberTicker}</td>
+            <td>{data.numberTicket}</td>
             <td>
-              {data.status === 0 ? (
+              {data.status === "chuasudung" ? (
                 <li className="statusChuadung">Chưa sử dụng</li>
-              ) : data.status === 1 ? (
+              ) : data.status === "dasudung" ? (
                 <li className="statusDadung">Đã sử dụng</li>
-              ) : (
+              ) : data.status === "hethan" ? (
                 <li className="statusHethan">Hết hạn</li>
+              ) : (
+                <></>
               )}
             </td>
-            <td>{data.dateUse}</td>
-            <td>{data.dateCreateTicker}</td>
+            <td>
+              {data.dateUse.seconds ? (
+                new Date(data.dateUse.seconds * 1000).toLocaleDateString(
+                  "en-GB"
+                )
+              ) : (
+                <></>
+              )}
+            </td>
+            <td>
+              {data.dateUse.seconds ? (
+                new Date(
+                  data.dateCreateTicket.seconds * 1000
+                ).toLocaleDateString("en-GB")
+              ) : (
+                <></>
+              )}
+            </td>
             <td>{data.doorCheckin}</td>
           </tr>
         ))

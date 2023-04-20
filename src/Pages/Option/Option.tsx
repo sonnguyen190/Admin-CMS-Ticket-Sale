@@ -38,7 +38,7 @@ const Option: React.FC = () => {
       status: 0,
     },
   ];
-
+  const handleOnchange = () => {};
   return (
     <div className="OptionAll">
       <div className="danhsachgoive">Danh sách gói vé</div>
@@ -91,9 +91,7 @@ const Option: React.FC = () => {
         <>
           <div className="popupEdit_over">
             <div className="popup_edit_page">
-              <div className="title_update_ticket">
-                Cập nhật thông tin gói vé
-              </div>
+              <div className="title_update_ticket">Thêm gói vé</div>
               {/* Mã và tên sự kiện */}
               <div className="code_and_name_Event">
                 <div>
@@ -101,7 +99,7 @@ const Option: React.FC = () => {
                     Mã sự kiện <b style={{ color: "red" }}>*</b>
                   </div>
                   <div className="input_option_edit_code">
-                    <input type="text" />
+                    <input type="text" onChange={handleOnchange} />
                   </div>
                 </div>
                 <div>
