@@ -1,107 +1,96 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import "./CheckTicket.css";
+import { collection, getDocs, where, query, orderBy } from "firebase/firestore";
 import dayjs from "dayjs";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
-import { TicketCheck } from "./interfaceCheck";
 import ListTableTicketCheck from "../../Components/ListTableTicketCheck";
-
+import { useSelector, useDispatch } from "react-redux";
+import { database } from "../../firebase";
+import { FilterCheckTicket } from "../../Components/FilterCheckTicket";
+import { listTicketCheck } from "../../Redux/selectors";
+import { TicketCheck } from "./interfaceCheck";
+import PaginationBar from "../../Components/Pagination";
 const CheckTicket: React.FC = () => {
-  const [date, setDate] = useState<string>();
-  const dataTicketCheck: TicketCheck[] = [
-    {
-      code: 12983789182,
-      dateUse: "11/11/2023",
-      typeTicket: "vé cổng",
-      doorCheckin: "Cổng 1",
-      statusCheck: 0,
-    },
-    {
-      code: 129121231122,
-      dateUse: "28/3/2023",
-      typeTicket: "vé cổng",
-      doorCheckin: "Cổng 1",
-      statusCheck: 0,
-    },
-    {
-      code: 11231241282,
-      dateUse: "11/11/2023",
-      typeTicket: "vé cổng",
-      doorCheckin: "Cổng 1",
-      statusCheck: 0,
-    },
-    {
-      code: 11231241282,
-      dateUse: "11/11/2023",
-      typeTicket: "vé cổng",
-      doorCheckin: "Cổng 1",
-      statusCheck: 0,
-    },
-    {
-      code: 11231241282,
-      dateUse: "11/11/2023",
-      typeTicket: "vé cổng",
-      doorCheckin: "Cổng 1",
-      statusCheck: 1,
-    },
-    {
-      code: 11231241282,
-      dateUse: "11/11/2023",
-      typeTicket: "vé cổng",
-      doorCheckin: "Cổng 1",
-      statusCheck: 1,
-    },
-    {
-      code: 11231241282,
-      dateUse: "11/11/2023",
-      typeTicket: "vé cổng",
-      doorCheckin: "Cổng 1",
-      statusCheck: 1,
-    },
+  let PageSize = 10;
+  const dbRef = collection(database, "doisoatve");
+  const listData = useSelector(listTicketCheck);
+  const listDataTicketCheck = listData.listData;
+  const dispatch = useDispatch();
+  const [currentPage, setCurrentPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
+  const [statusCheck, setStatusCheck] = useState("tatca");
+  const [fromDate, setFromDate] = useState();
+  const [toDate, setToDate] = useState();
 
-    {
-      code: 11231241282,
-      dateUse: "11/11/2023",
-      typeTicket: "vé cổng",
-      doorCheckin: "Cổng 1",
-      statusCheck: 1,
-    },
-    {
-      code: 11231241282,
-      dateUse: "11/11/2023",
-      typeTicket: "vé cổng",
-      doorCheckin: "Cổng 1",
-      statusCheck: 1,
-    },
-    {
-      code: 11231241282,
-      dateUse: "11/11/2023",
-      typeTicket: "vé cổng",
-      doorCheckin: "Cổng 1",
-      statusCheck: 1,
-    },
-    {
-      code: 112311282,
-      dateUse: "11/11/2020",
-      typeTicket: "vé cổng",
-      doorCheckin: "Cổng 1",
-      statusCheck: 0,
-    },
-  ];
   useEffect(() => {
-    //tạo ngày
-    var today: any = new Date();
-    var dd = String(today.getDate()).padStart(2, "0");
-    var mm = String(today.getMonth() + 1).padStart(2, "0");
-    var yyyy = today.getFullYear();
-    today = mm + "/" + dd + "/" + yyyy;
-
-    setDate(today);
+    setIsLoading(true);
+    getData();
   }, []);
+  const currentTableData = useMemo(() => {
+    const firstPageIndex = (currentPage - 1) * PageSize;
+    const lastPageIndex = firstPageIndex + PageSize;
+    return listData.listData.slice(firstPageIndex, lastPageIndex);
+  }, [currentPage, listData.listData]);
+  const getData = async () => {
+    const data = await getDocs(dbRef);
+    setIsLoading(false);
+    dispatch(
+      FilterCheckTicket.actions.listFilter(
+        data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+      )
+    );
+  };
+  const handleChooseFromDate = (e: any) => {
+    setFromDate(e.$d);
+  };
+  const handleChooseToDate = (e: any) => {
+    setToDate(e.$d);
+  };
+  const handleChooseStatus = (e: any) => {
+    setStatusCheck(e.target.value);
+  };
+  const handleFilterOnclick = async () => {
+    const filter = {
+      fromDate,
+      toDate,
+      statusCheck,
+    };
+    console.log(filter);
+    const ticketRef = collection(database, "doisoatve");
+    const queryConstraints = [];
+    if (filter.statusCheck !== "tatca") {
+      queryConstraints.push(where("statusCheck", "==", filter.statusCheck));
+    }
+    if (filter.fromDate !== undefined) {
+      queryConstraints.push(where("dateUse", ">=", filter.fromDate));
+    }
+    if (filter.toDate !== undefined) {
+      queryConstraints.push(where("dateUse", "<=", filter.toDate));
+    }
+    const qstring = query(
+      ticketRef,
+      ...queryConstraints,
+      orderBy("dateUse", "asc")
+    );
+    const tickets: TicketCheck[] = [];
+    const docsSnap = await getDocs(qstring);
+    docsSnap.forEach((docItem) => {
+      tickets.push({
+        code: docItem.data().code,
+        statusCheck: docItem.data().statusCheck,
+        dateUse: docItem.data().dateUse,
+        typeTicket: docItem.data().typeTicket,
+        doorCheckin: docItem.data().doorCheckin,
+      });
+    });
+    console.log(tickets);
+    dispatch(FilterCheckTicket.actions.listFilter(tickets));
+  };
   return (
     <div className="CheckTicket">
       <div className="CheckTicket_left">
@@ -135,8 +124,15 @@ const CheckTicket: React.FC = () => {
                 <th scope="col"></th>
               </tr>
             </thead>
-            <ListTableTicketCheck data={dataTicketCheck} />
+            <ListTableTicketCheck data={currentTableData} />
           </table>
+          <PaginationBar
+            currentPage={currentPage}
+            totalCount={listDataTicketCheck.length}
+            siblingCount={1}
+            pageSize={PageSize}
+            onPageChange={(page: number) => setCurrentPage(page)}
+          />
         </div>
       </div>
       <div className="CheckTicket_right">
@@ -146,15 +142,31 @@ const CheckTicket: React.FC = () => {
           <div className="ul_li_filter">
             <ul>
               <li>
-                <input defaultChecked type="radio" name="checkTicket" />
+                <input
+                  defaultChecked
+                  type="radio"
+                  value="tatca"
+                  onChange={(e) => handleChooseStatus(e)}
+                  name="checkTicket"
+                />
                 <label>Tất cả</label>
               </li>
               <li>
-                <input type="radio" name="checkTicket" />
+                <input
+                  type="radio"
+                  name="checkTicket"
+                  value="dadoisoat"
+                  onChange={(e) => handleChooseStatus(e)}
+                />
                 <label>Đã đối soát</label>
               </li>
               <li>
-                <input type="radio" name="checkTicket" />
+                <input
+                  type="radio"
+                  name="checkTicket"
+                  value="chuadoisoat"
+                  onChange={(e) => handleChooseStatus(e)}
+                />
                 <label>Chưa đối soát</label>
               </li>
             </ul>
@@ -171,7 +183,8 @@ const CheckTicket: React.FC = () => {
           <div className="CheckDate_content">
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DatePicker
-                defaultValue={dayjs("11/11/2022")}
+                value={fromDate ? dayjs(fromDate) : dayjs()}
+                onChange={handleChooseFromDate}
                 className="DatePicker"
               />
             </LocalizationProvider>
@@ -182,12 +195,18 @@ const CheckTicket: React.FC = () => {
           <div className="CheckDate_name">Đến ngày</div>
           <div className="CheckDate_content">
             <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <DatePicker defaultValue={dayjs(date)} className="DatePicker" />
+              <DatePicker
+                onChange={handleChooseToDate}
+                value={toDate ? dayjs(toDate) : dayjs()}
+                className="DatePicker"
+              />
             </LocalizationProvider>
           </div>
         </div>
         <div className="AcceptFilter">
-          <button className="buttonFilerAccept">Lọc</button>
+          <button onClick={handleFilterOnclick} className="buttonFilerAccept">
+            Lọc
+          </button>
         </div>
       </div>
     </div>

@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
-import { addDoc, collection, getDocs, setDoc, doc } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 import "./Ticketmanagement.css";
 import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
 import TableListTicket from "../../Components/TableListTicket/TableListTicket";
@@ -11,16 +11,23 @@ import { useSelector, useDispatch } from "react-redux";
 import { database } from "../../firebase";
 import { listTicketSelectors } from "../../Redux/selectors";
 import { FilterSlice } from "../../Components/FilterSlice";
-import dayjs, { Dayjs } from "dayjs";
+
+import PaginationBar from "../../Components/Pagination";
 
 const Ticketmanagement: React.FC = () => {
+  let PageSize = 10;
   const [open, setOpen] = useState(false);
   const listData = useSelector(listTicketSelectors);
   const [isLoading, setIsLoading] = useState(false);
-
+  const [currentPage, setCurrentPage] = useState(1);
   const dispatch = useDispatch();
   const dbRef = collection(database, "ticket");
 
+  const currentTableData = useMemo(() => {
+    const firstPageIndex = (currentPage - 1) * PageSize;
+    const lastPageIndex = firstPageIndex + PageSize;
+    return listData.listData.slice(firstPageIndex, lastPageIndex);
+  }, [currentPage, listData.listData]);
   const handleOpen = (a: boolean) => {
     setOpen(a);
   };
@@ -38,25 +45,6 @@ const Ticketmanagement: React.FC = () => {
         data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
       )
     );
-  };
-
-  const handleadd = async () => {
-    await setDoc(doc(dbRef, `jashrjkahKS`), {
-      code: "ALT121312",
-      numberTicket: 123123123,
-      status: "chuasudung",
-      dateUse: new Dayjs(),
-      dateCreateTicket: new Dayjs(),
-      doorCheckin: 1,
-    });
-    // await addDoc(dbRef, {
-    //   code: "ALT121312",
-    //   numberTicket: 123123123,
-    //   status: "chuasudung",
-    //   dateUse: Dayjs,
-    //   dateCreateTicket: Dayjs,
-    //   doorCheckin: 1,
-    // });
   };
 
   return (
@@ -89,13 +77,18 @@ const Ticketmanagement: React.FC = () => {
             <FilterAltOutlinedIcon className="iconFilter" />
             Lọc vé
           </div>
-          <div onClick={handleadd} className="exportFile">
-            Xuất file (.csv)
-          </div>
+          <div className="exportFile">Xuất file (.csv)</div>
         </div>
       </div>
       <div>
-        <TableListTicket data={listData.listData} isLoading={isLoading} />
+        <TableListTicket data={currentTableData} isLoading={isLoading} />
+        <PaginationBar
+          currentPage={currentPage}
+          totalCount={listData.listData.length}
+          siblingCount={1}
+          pageSize={PageSize}
+          onPageChange={(page: number) => setCurrentPage(page)}
+        />
       </div>
     </div>
   );

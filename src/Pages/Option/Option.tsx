@@ -7,9 +7,29 @@ import AccessTimeOutlinedIcon from "@mui/icons-material/AccessTimeOutlined";
 import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
 import { DataTicketOption } from "./interfaceOption";
 import ListTableOption from "../../Components/ListTableOption";
-
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import dayjs from "dayjs";
 const Option: React.FC = () => {
   const [open, setOpen] = useState(false);
+  const [code, setCode] = useState();
+  const [name, setName] = useState();
+  const [dateStart, setDateStart] = useState();
+  const [dateEnd, setDateEnd] = useState();
+  const [price, sePrice] = useState();
+  const [priceCombo, sePriceCombo] = useState();
+  const [ticketCombo, setTicketCombo] = useState();
+  const [status, setStatus] = useState();
+  const handleOnchangeValue = (e: any) => {
+    console.log(`set${e.target.name}(${e.target.value})`);
+    const string = () => `set${e.target.name}(${e.target.value})`;
+    string();
+  };
+
+  const handleOnchangeDateStart = (e: any) => {
+    setDateStart(e.$d);
+  };
   const dataFake: DataTicketOption[] = [
     {
       code: "ALT14091",
@@ -38,7 +58,7 @@ const Option: React.FC = () => {
       status: 0,
     },
   ];
-  const handleOnchange = () => {};
+
   return (
     <div className="OptionAll">
       <div className="danhsachgoive">Danh sách gói vé</div>
@@ -99,13 +119,21 @@ const Option: React.FC = () => {
                     Mã sự kiện <b style={{ color: "red" }}>*</b>
                   </div>
                   <div className="input_option_edit_code">
-                    <input type="text" onChange={handleOnchange} />
+                    <input
+                      type="text"
+                      name="Code"
+                      onChange={handleOnchangeValue}
+                    />
                   </div>
                 </div>
                 <div>
                   <div className="name_tag">Tên sự kiện</div>
                   <div className="input_option_edit_nameEvent">
-                    <input type="text" />
+                    <input
+                      type="text"
+                      name="Name"
+                      onChange={handleOnchangeValue}
+                    />
                   </div>
                 </div>
               </div>
@@ -115,13 +143,17 @@ const Option: React.FC = () => {
                   <div className="name_tag"> Ngày áp dụng</div>
                   <div className="input_option_edit_StartDate">
                     <div className="DateStart">
-                      <input className="input_Change_Date" type="text" />
-                      <CalendarTodayOutlinedIcon className="iconCalendar" />
+                      <LocalizationProvider dateAdapter={AdapterDayjs}>
+                        <DatePicker
+                          className="DateStart"
+                          value={dateStart ? dayjs(dateStart) : dayjs()}
+                          onChange={handleOnchangeDateStart}
+                        />
+                      </LocalizationProvider>
                     </div>
 
                     <div className="DateStart">
-                      <input className="input_Change_Hour" type="text" />
-                      <AccessTimeOutlinedIcon className="iconClock" />
+                      <input className="input_Change_Hour" type="time" />
                     </div>
                   </div>
                 </div>

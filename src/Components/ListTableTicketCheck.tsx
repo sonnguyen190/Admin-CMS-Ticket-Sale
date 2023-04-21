@@ -11,11 +11,13 @@ const ListTableTicketCheck: React.FC<Props> = (props) => {
         <tr key={key}>
           <td>{key + 1}</td>
           <td>{data.code}</td>
-          <td>{data.dateUse}</td>
-          <td>{data.typeTicket}</td>
-          <td>{data.doorCheckin}</td>
           <td>
-            {data.statusCheck === 0 ? (
+            {new Date(data.dateUse.seconds * 1000).toLocaleDateString("en-GB")}
+          </td>
+          <td>{data.typeTicket}</td>
+          <td>Cong {data.doorCheckin}</td>
+          <td>
+            {data.statusCheck === "chuadoisoat" ? (
               <div className="unCheck">Chưa đối soát</div>
             ) : (
               <div className="Checked">Đã đối soát</div>

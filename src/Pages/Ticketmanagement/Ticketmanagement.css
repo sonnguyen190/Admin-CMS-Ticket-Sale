@@ -61,6 +61,7 @@
     background-color: white;
     border-radius: 10px;
     padding: 20px;
+    height: 820px;
 }
 .themeFilter{
     position: fixed;
@@ -198,3 +199,45 @@
     align-items: center;
     font-size: 50px;
  }
+ .pagination-bar {
+ 
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 45px;
+    position: fixed;
+    bottom: 35px;
+    left: 50%;
+
+  }
+.pagination-bar span {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 3px 7px 4px 8px;
+    gap: 10px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    text-decoration: none;
+    opacity: 0.7;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    color: #1e0d03;
+    cursor: pointer;
+   
+  }
+ .active {
+    border: 1px solid #ff993c;
+    border-radius: 4px;
+    color: #fc912e;
+  }
+ .disabled {
+    pointer-events: none;
+  }
+  

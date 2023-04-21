@@ -1,7 +1,9 @@
 export interface TicketCheck {
   code: number;
-  dateUse: string;
+  dateUse: {
+    seconds: number;
+  };
   typeTicket: string;
-  doorCheckin: string;
-  statusCheck: number;
+  doorCheckin: number;
+  statusCheck: string;
 }

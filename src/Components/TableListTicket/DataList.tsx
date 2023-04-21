@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { ListData } from "./InterfaceData";
 
 interface Props {
@@ -7,7 +7,6 @@ interface Props {
 }
 const DataList: React.FC<Props> = (props) => {
   const { data, isLoading } = props;
-  const [dateUse, setDateUse] = useState();
 
   useEffect(() => {});
 
@@ -38,22 +37,18 @@ const DataList: React.FC<Props> = (props) => {
               )}
             </td>
             <td>
-              {data.dateUse.seconds ? (
-                new Date(data.dateUse.seconds * 1000).toLocaleDateString(
-                  "en-GB"
-                )
-              ) : (
-                <></>
-              )}
+              {data.dateUse.seconds
+                ? new Date(data.dateUse.seconds * 1000).toLocaleDateString(
+                    "en-GB"
+                  )
+                : "12/12/2022"}
             </td>
             <td>
-              {data.dateUse.seconds ? (
-                new Date(
-                  data.dateCreateTicket.seconds * 1000
-                ).toLocaleDateString("en-GB")
-              ) : (
-                <></>
-              )}
+              {data.dateUse.seconds !== undefined
+                ? new Date(
+                    data.dateCreateTicket.seconds * 1000
+                  ).toLocaleDateString("en-GB")
+                : "12/12/2022"}
             </td>
             <td>{data.doorCheckin}</td>
           </tr>
