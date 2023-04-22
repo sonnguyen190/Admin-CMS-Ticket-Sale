@@ -1,13 +1,19 @@
 export interface DataTicketOption {
+  id: string;
   code: string;
   name: string;
-  nameEvent: string;
-  dateStart: string;
+  dateStart: {
+    seconds: number;
+    nanoseconds: number;
+  };
   hourStart: string;
-  dateEnd: string;
+  dateEnd: {
+    seconds: number;
+    nanoseconds: number;
+  };
   hourEnd: string;
   price: number;
   priceCombo: number | undefined;
   ticketCombo: number | undefined;
-  status: number;
+  status: string;
 }

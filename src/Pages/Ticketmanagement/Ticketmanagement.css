@@ -61,7 +61,7 @@
     background-color: white;
     border-radius: 10px;
     padding: 20px;
-    height: 820px;
+    height: 850px;
 }
 .themeFilter{
     position: fixed;
@@ -206,7 +206,7 @@
     gap: 15px;
     margin-bottom: 45px;
     position: fixed;
-    bottom: 35px;
+    bottom: 0px;
     left: 50%;
 
   }
